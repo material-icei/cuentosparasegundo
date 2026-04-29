@@ -1,0 +1,416 @@
+/* =========================================================
+   FLIPBOOK 3D — Estilo libro físico real (tipo Heyzine)
+   Dos páginas visibles, pliegue animado sobre el eje central
+   ========================================================= */
+
+:root {
+  --cover-color:  #FF6B6B;
+  --cover-color2: #FFD93D;
+  --page-bg: #fffef8;
+  --font-display: 'Baloo 2', cursive;
+  --font-story:   'Nunito', sans-serif;
+  --flip-dur: 650ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+body {
+  font-family: var(--font-story);
+  background: radial-gradient(ellipse at 60% 30%, #302b63 0%, #0f0c29 70%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ── Fondo estrellado ─────────────────────────────────── */
+.stars-bg { position:fixed; inset:0; pointer-events:none; z-index:0; }
+.star {
+  position:absolute; border-radius:50%; background:#fff;
+  animation: twinkle var(--dur,3s) ease-in-out infinite alternate;
+  animation-delay: var(--d,0s);
+}
+@keyframes twinkle {
+  from { opacity:.05; transform:scale(1); }
+  to   { opacity:.8;  transform:scale(1.5); }
+}
+
+/* ── Barra superior ───────────────────────────────────── */
+.story-nav {
+  position:relative; z-index:10; width:100%;
+  display:flex; align-items:center; gap:16px;
+  padding:12px 24px;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-back {
+  display:flex; align-items:center; gap:6px;
+  color:#fff; text-decoration:none;
+  font-family:var(--font-display); font-weight:700; font-size:.92rem;
+  padding:6px 14px; border-radius:50px;
+  background:rgba(255,255,255,0.1);
+  transition:background .2s; white-space:nowrap;
+}
+.nav-back:hover { background:rgba(255,255,255,0.18); }
+.nav-title {
+  flex:1; text-align:center;
+  font-family:var(--font-display); font-weight:800; font-size:1.05rem;
+  color:#FFD93D; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.nav-pages {
+  font-family:var(--font-display); font-weight:700; font-size:.82rem;
+  color:rgba(255,255,255,0.45); white-space:nowrap; min-width:60px; text-align:right;
+}
+
+/* ── Escena del libro ─────────────────────────────────── */
+.book-scene {
+  position:relative; z-index:1;
+  flex:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:28px 16px 20px; width:100%;
+}
+
+/* Contenedor con perspectiva 3D */
+.book-wrap {
+  perspective: 2200px;
+  width: min(900px, 95vw);
+}
+
+/* El libro abierto: dos mitades */
+.book-open {
+  position:relative;
+  width:100%;
+  aspect-ratio:2/1.35;
+  max-height:68vh;
+  display:flex;
+  transform-style:preserve-3d;
+  border-radius:3px 6px 6px 3px;
+  box-shadow:
+    0 50px 80px rgba(0,0,0,0.6),
+    0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Media izquierda (página visible izquierda) */
+.half-left {
+  flex:1;
+  background:var(--page-bg);
+  border-radius:3px 0 0 3px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:inset -6px 0 18px rgba(0,0,0,0.09);
+}
+
+/* Media derecha (página visible derecha) */
+.half-right {
+  flex:1;
+  background:var(--page-bg);
+  border-radius:0 6px 6px 0;
+  position:relative;
+  overflow:hidden;
+  box-shadow:inset 6px 0 18px rgba(0,0,0,0.09);
+}
+
+/* Lomo decorativo */
+.spine {
+  position:absolute;
+  top:0; bottom:0; left:50%;
+  width:6px;
+  transform:translateX(-50%);
+  background:linear-gradient(to right,
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.04) 40%,
+    rgba(0,0,0,0.04) 60%,
+    rgba(0,0,0,0.18) 100%);
+  z-index:6; pointer-events:none;
+}
+.spine::before {
+  content:'';
+  position:absolute; top:0; bottom:0; right:100%;
+  width:24px;
+  background:linear-gradient(to right, transparent, rgba(0,0,0,0.07));
+}
+.spine::after {
+  content:'';
+  position:absolute; top:0; bottom:0; left:100%;
+  width:24px;
+  background:linear-gradient(to left, transparent, rgba(0,0,0,0.07));
+}
+
+/* ── La hoja que gira ──────────────────────────────────── */
+.flipper {
+  position:absolute;
+  top:0; bottom:0;
+  width:50%;
+  transform-origin:left center;
+  transform-style:preserve-3d;
+  z-index:4;
+  /* Por defecto: reposada abierta (página derecha) */
+  transform:rotateY(0deg);
+  transition:transform var(--flip-dur) cubic-bezier(.645,.045,.355,1);
+}
+.flipper.is-left {
+  /* Reposada cerrada sobre la izquierda */
+  right:0;
+  transform-origin:right center;
+}
+
+/* Sombra de doblado (gradient que simula la curvatura) */
+.flipper::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to left, rgba(0,0,0,.18) 0%, transparent 40%);
+  z-index:2; pointer-events:none;
+  opacity:0;
+  transition:opacity .2s;
+  border-radius:inherit;
+}
+.flipper.animating::before { opacity:1; }
+
+/* Cara frontal y trasera */
+.fl-front, .fl-back {
+  position:absolute; inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  overflow:hidden;
+}
+.fl-front { background:var(--page-bg); }
+.fl-back  { background:var(--page-bg); transform:rotateY(180deg); }
+
+/* Al girar */
+.flipper.flipped { transform:rotateY(-180deg); }
+.flipper.is-left.flipped { transform:rotateY(180deg); }
+
+/* ── Contenido de página ───────────────────────────────── */
+.pg {
+  width:100%; height:100%;
+  display:flex; flex-direction:column;
+  padding:clamp(14px,3.5%,32px) clamp(12px,4%,30px) clamp(12px,3%,24px);
+  position:relative; overflow:hidden;
+  gap:10px;
+}
+
+/* Tapa */
+.pg-cover {
+  background:linear-gradient(135deg, var(--cover-color), var(--cover-color2));
+  align-items:center; justify-content:center; text-align:center;
+  color:#fff; border-radius:inherit;
+}
+.cov-sparkles { position:absolute; inset:0; pointer-events:none; }
+.cov-sp {
+  position:absolute; font-size:1.2rem;
+  animation:spSpin var(--ds,2s) ease-in-out infinite alternate;
+  animation-delay:var(--dd,0s);
+}
+@keyframes spSpin {
+  from{transform:scale(.8) rotate(0deg);opacity:.6}
+  to  {transform:scale(1.2) rotate(25deg);opacity:1}
+}
+.cov-emoji {
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.25));
+  animation:floatY 3s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%,100%{transform:translateY(0) rotate(-4deg)}
+  50%    {transform:translateY(-10px) rotate(4deg)}
+}
+.cov-title {
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(1rem,3.2vw,2rem);
+  text-shadow:0 3px 12px rgba(0,0,0,.2); line-height:1.2;
+}
+.cov-sub {
+  font-size:clamp(.7rem,1.7vw,.9rem);
+  opacity:.88; font-weight:700;
+}
+.cov-btn {
+  margin-top:6px;
+  background:#fff; color:var(--cover-color);
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(.78rem,1.8vw,.95rem);
+  padding:9px 24px; border-radius:50px; border:none; cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  transition:transform .2s cubic-bezier(.36,1.56,.64,1);
+}
+.cov-btn:hover{transform:scale(1.06)}
+
+/* Página de contenido */
+.pg-content { color:#2d2d4e; }
+
+.pg-chapter {
+  font-family:var(--font-display); font-size:.65rem; font-weight:700;
+  letter-spacing:.08em; color:var(--cover-color,#FF6B6B);
+  text-transform:uppercase;
+}
+
+.story-body {
+  font-size:clamp(.78rem,1.9vw,1rem);
+  line-height:1.85; color:#2d2d4e; font-weight:600; flex:1;
+}
+.story-body p+p { margin-top:.65em; }
+
+.story-quote {
+  display:block;
+  border-left:3px solid var(--cover-color,#FF6B6B);
+  padding:5px 10px; margin:6px 0;
+  font-style:italic; font-weight:700;
+  font-size:clamp(.78rem,1.85vw,.98rem);
+  color:#1a1a2e;
+  background:rgba(255,107,107,0.07);
+  border-radius:0 7px 7px 0;
+}
+
+/* Imágenes */
+.pg-img {
+  width:100%; 
+  /*max-height:36%;*/
+  aspect-ratio: 1366 / 768; /* Mantiene la proporción 1366x768 dentro del libro */
+  /*object-fit:cover; */
+  object-fit: contain;/* Asegura que se vea toda la imagen sin recortes */
+  background: #f0f0f0; /* Fondo neutro por si la imagen es más pequeña */
+  border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  display: block; /**/
+  margin: auto; /**/
+}
+.pg-img-cap {
+  font-size:.68rem; text-align:center;
+  color:rgba(0,0,0,.35); font-style:italic; margin-top:-4px;
+}
+
+/* Video */
+.pg-video-wrap {
+  width: 90%;
+  max-width: 400px; /* Tamaño controlado para que quepa bien en la página */
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  background: #000;
+  margin-top: 15px;
+  
+  /*
+  border-radius:8px; overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
+  position:relative; background:#000;*/
+}
+.pg-video { 
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  
+  /*
+  width:100%; display:block; max-height:34%; */
+  }
+.pg-video-lbl {
+  position:absolute; top:7px; left:7px;
+  background:rgba(0,0,0,.55); color:#FFD93D;
+  font-family:var(--font-display); font-weight:700; font-size:.65rem;
+  padding:3px 9px; border-radius:20px; backdrop-filter:blur(4px);
+}
+
+/* Audio */
+.pg-audio {
+  display:flex; align-items:center; gap:9px;
+  background:rgba(255,107,107,.08);
+  border:1.5px solid rgba(255,107,107,.2);
+  border-radius:40px; padding:7px 12px;
+}
+.pg-audio-icon { font-size:1.1rem; animation:pulseA 1.5s ease-in-out infinite; }
+@keyframes pulseA{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.pg-audio audio { flex:1; height:28px; }
+
+/* Número de página */
+.pg-num {
+  position:absolute; bottom:8px;
+  font-family:var(--font-display); font-size:.68rem; font-weight:700;
+  color:rgba(0,0,0,.18);
+}
+.pg-num.left  { left:16px; }
+.pg-num.right { right:16px; }
+
+/* Página en blanco */
+.pg-blank {
+  background:var(--page-bg);
+  justify-content:flex-end; align-items:flex-start;
+}
+.pg-blank-deco { font-size:4rem; opacity:.06; user-select:none; }
+
+/* Página final */
+.pg-end {
+  /* --- Ajuste para el Video en la página derecha --- */
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  padding: 20px;
+  align-items:center;
+  /**/
+  
+  /*background:linear-gradient(135deg,#6BCB77,#4D96FF);
+  align-items:center; justify-content:center; text-align:center;
+  color:#fff; border-radius:inherit;*/
+}
+.end-emoji { font-size:clamp(2.2rem,5.5vw,3.8rem); animation:floatY 3s ease-in-out infinite; }
+.end-title { font-family:var(--font-display); font-size:clamp(1.1rem,2.8vw,1.7rem); font-weight:800; }
+.end-sub   { font-size:clamp(.75rem,1.8vw,.9rem); opacity:.9; font-weight:700; }
+.end-link  {
+  display:inline-block; background:#fff; color:#6BCB77;
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(.82rem,1.8vw,.95rem);
+  padding:9px 26px; border-radius:50px; text-decoration:none;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  transition:transform .2s cubic-bezier(.36,1.56,.64,1); margin-top:6px;
+}
+.end-link:hover{transform:scale(1.06)}
+
+/* ── Controles inferiores ──────────────────────────────── */
+.book-controls {
+  position:relative; z-index:2;
+  display:flex; align-items:center; gap:12px;
+  width:min(900px,95vw);
+  padding:14px 4px 24px;
+}
+
+.btn-flip {
+  display:flex; align-items:center; gap:6px;
+  font-family:var(--font-display); font-weight:800; font-size:.9rem;
+  padding:10px 20px; border-radius:50px;
+  border:2px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:#fff; cursor:pointer;
+  transition:all .2s cubic-bezier(.36,1.56,.64,1);
+  white-space:nowrap;
+}
+.btn-flip:hover:not(:disabled){background:rgba(255,255,255,.16);transform:scale(1.04)}
+.btn-flip:disabled{opacity:.28;cursor:default;transform:none}
+.btn-flip.next {
+  background:linear-gradient(90deg,var(--cover-color,#FF6B6B),var(--cover-color2,#FFD93D));
+  border-color:transparent;
+  box-shadow:0 4px 18px rgba(255,107,107,.4);
+  margin-left:auto;
+}
+.btn-flip.next:hover:not(:disabled){box-shadow:0 6px 26px rgba(255,107,107,.6)}
+
+.progress-track {
+  flex:1; height:5px;
+  background:rgba(255,255,255,.1);
+  border-radius:10px; overflow:hidden;
+}
+.progress-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--cover-color,#FF6B6B),var(--cover-color2,#FFD93D));
+  border-radius:10px; transition:width .45s ease;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media(max-width:640px){
+  .story-nav{padding:10px 14px}
+  .book-scene{padding:12px 8px 12px}
+  .pg{padding:12px 11px 10px}
+  .book-controls{padding:10px 4px 16px}
+  .btn-flip{padding:8px 13px;font-size:.82rem}
+}

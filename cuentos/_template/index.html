@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  TEMPLATE — NUEVO CUENTO (Flipbook 3D)                  ║
+  ╠══════════════════════════════════════════════════════════╣
+  ║  1. Copiá esta carpeta a /cuentos/nombre-del-cuento/    ║
+  ║  2. Agregá tus archivos en imagenes/ audio/ video/      ║
+  ║  3. Cambiá --cover-color y --cover-color2 abajo         ║
+  ║  4. Editá las páginas dentro de #page-defs              ║
+  ║  5. Agregá la tarjeta en /index.html raíz               ║
+  ╚══════════════════════════════════════════════════════════╝
+
+  TIPOS DE PÁGINA disponibles:
+  ─ pg-cover   → tapa con emoji y botón inicio
+  ─ pg-content → página de texto (con imágenes, video o audio opcionales)
+  ─ pg-end     → página final con botón volver
+
+  ELEMENTOS DENTRO DE pg-content:
+  ─ <p class="pg-chapter">Subtítulo</p>
+  ─ <div class="story-body"><p>texto</p></div>
+  ─ <span class="story-quote">Diálogo</span>
+  ─ <img class="pg-img" src="imagenes/..." />
+  ─ <div class="pg-video-wrap"><video class="pg-video" ...></div>
+  ─ <div class="pg-audio"><audio ...></audio></div>
+  ─ <span class="pg-num left/right">N</span>
+
+  NOTA: El motor empareja páginas automáticamente en spreads (2 páginas visibles).
+  -->
+  <title>NOMBRE DEL CUENTO</title>
+  <link rel="stylesheet" href="../../assets/css/flipbook.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cover-color:  #6BCB77;   /* 🎨 Cambiá este color */
+      --cover-color2: #4D96FF;   /* 🎨 y este también    */
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<nav class="story-nav">
+  <a href="../../index.html" class="nav-back">← Inicio</a>
+  <span class="nav-title">NOMBRE DEL CUENTO</span>
+  <span class="nav-pages" id="navPages">1 / ?</span>
+</nav>
+
+<div class="book-scene">
+  <div class="book-wrap">
+    <div class="book-open">
+      <div class="half-left"></div>
+      <div class="half-right"></div>
+      <div class="flipper">
+        <div class="fl-front"></div>
+        <div class="fl-back"></div>
+      </div>
+      <div class="spine"></div>
+    </div>
+  </div>
+  <div class="book-controls">
+    <button class="btn-flip prev" id="btnPrev" disabled>← Anterior</button>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <button class="btn-flip next" id="btnNext">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PÁGINAS — editá aquí tu cuento
+═══════════════════════════════════════ -->
+<div id="page-defs" style="display:none">
+
+  <!-- PORTADA (requerida, siempre primera) -->
+  <div class="pg pg-cover">
+    <div class="cov-sparkles">
+      <span class="cov-sp" style="top:12%;left:18%;--ds:2.1s;--dd:0s">✨</span>
+      <span class="cov-sp" style="top:22%;right:12%;--ds:1.8s;--dd:.3s">⭐</span>
+      <span class="cov-sp" style="bottom:20%;left:10%;--ds:2.4s;--dd:.6s">💫</span>
+      <span class="cov-sp" style="bottom:14%;right:18%;--ds:2s;--dd:.9s">✨</span>
+    </div>
+    <div class="cov-emoji">🌟</div><!-- 🔤 Cambiá el emoji -->
+    <h1 class="cov-title">Título del cuento</h1>
+    <p class="cov-sub">Una breve descripción</p>
+    <button class="cov-btn" onclick="window.__fb.next()">¡Comenzar! →</button>
+  </div>
+
+  <!-- PÁGINA DE SOLO TEXTO -->
+  <div class="pg pg-content">
+    <p class="pg-chapter">Capítulo 1</p>
+    <div class="story-body">
+      <p>Primer párrafo del cuento...</p>
+      <p>Segundo párrafo...</p>
+      <span class="story-quote">— Diálogo importante —</span>
+      <p>Continúa la historia...</p>
+    </div>
+    <span class="pg-num right">1</span>
+  </div>
+
+  <!-- PÁGINA CON IMAGEN -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/imagen1.png" alt="descripción" onerror="this.style.display='none'" />
+    <div class="story-body">
+      <p>Texto que acompaña la imagen...</p>
+    </div>
+    <span class="pg-num left">2</span>
+  </div>
+
+  <!-- PÁGINA CON VIDEO -->
+  <div class="pg pg-content">
+    <div class="pg-video-wrap">
+      <video class="pg-video" controls preload="metadata">
+        <source src="video/video.mp4" type="video/mp4" />
+      </video>
+      <span class="pg-video-lbl">🎬 Mirá el cuento</span>
+    </div>
+    <div class="story-body">
+      <p>Texto que acompaña el video...</p>
+    </div>
+    <span class="pg-num right">3</span>
+  </div>
+
+  <!-- PÁGINA CON AUDIO -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>Texto de esta página...</p>
+    </div>
+    <div class="pg-audio">
+      <span class="pg-audio-icon">🎙️</span>
+      <audio controls preload="none" style="width:100%">
+        <source src="audio/narracion.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+    <span class="pg-num left">4</span>
+  </div>
+
+  <!-- PÁGINA FINAL (requerida, siempre última) -->
+  <div class="pg pg-end">
+    <div class="end-emoji">🎉</div>
+    <h2 class="end-title">¡Fin del cuento!</h2>
+    <p class="end-sub">¿Te gustó?<br>¡Hay más cuentos esperándote!</p>
+    <a href="../../index.html" class="end-link">📚 Ver más cuentos</a>
+  </div>
+
+</div><!-- /#page-defs -->
+
+<script src="../../assets/js/flipbook.js"></script>
+<script>
+  const pages = Array.from(document.querySelectorAll('#page-defs > .pg'));
+  window.__fb = new Flipbook3D({ pages });
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antología de Cuentos — 2° Grado</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+</head>
+<body class="home">
+
+  <!-- Estrellas de fondo animadas -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Encabezado principal -->
+  <header class="hero">
+    <div class="hero-badge">📚 2° Grado</div>
+    <h1 class="hero-title">
+      <span class="word word-1">Cuentos</span>
+      <span class="word word-2">que</span>
+      <span class="word word-3">brillan</span>
+    </h1>
+    <p class="hero-sub">¡Elegí tu cuento y comenzá la aventura!</p>
+    <div class="hero-deco">✨</div>
+  </header>
+
+  <!-- Índice / Grilla de cuentos -->
+  <main class="library">
+    <div class="books-grid" id="booksGrid">
+
+      <!-- Cuento 1 — El libro que susurra -->
+      <article class="book-card" style="--card-color:#FF6B6B; --card-color2:#FFD93D;" onclick="window.location='cuentos/el-libro-que-susurra/index.html'">
+        <div class="card-cover">
+          <div class="card-emoji">📖</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">El libro que susurra</h2>
+          <p class="card-desc">Tomás escucha algo increíble en el aula… ¡un libro que le habla!</p>
+          <div class="card-meta">
+            <span class="tag">🎬 Video</span>
+            <span class="tag">🖼 Imágenes</span>
+            <span class="tag">🎙 Audio</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- Cuento 2 — Placeholder -->
+      <article class="book-card coming-soon" style="--card-color:#A78BFA; --card-color2:#60A5FA;">
+        <div class="card-cover">
+          <div class="card-emoji">🌟</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Próximamente…</h2>
+          <p class="card-desc">Otro cuento mágico está llegando.</p>
+        </div>
+        <div class="card-btn disabled">Pronto 🔒</div>
+      </article>
+
+      <!-- Cuento 3 — Placeholder -->
+      <article class="book-card coming-soon" style="--card-color:#34D399; --card-color2:#6EE7B7;">
+        <div class="card-cover">
+          <div class="card-emoji">🦋</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Próximamente…</h2>
+          <p class="card-desc">Otro cuento mágico está llegando.</p>
+        </div>
+        <div class="card-btn disabled">Pronto 🔒</div>
+      </article>
+
+      <!-- Cuento 4 — Placeholder -->
+      <article class="book-card coming-soon" style="--card-color:#F97316; --card-color2:#FBBF24;">
+        <div class="card-cover">
+          <div class="card-emoji">🚀</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Próximamente…</h2>
+          <p class="card-desc">Otro cuento mágico está llegando.</p>
+        </div>
+        <div class="card-btn disabled">Pronto 🔒</div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Hecho con 💛 para lectores valientes de 2° grado</p>
+  </footer>
+
+  <script src="assets/js/stars.js"></script>
+</body>
+</html>

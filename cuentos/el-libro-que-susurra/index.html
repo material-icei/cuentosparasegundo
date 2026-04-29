@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El libro que susurra</title>
+  <link rel="stylesheet" href="../../assets/css/flipbook.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { --cover-color:#FF6B6B; --cover-color2:#FFD93D; }
+  </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<nav class="story-nav">
+  <a href="../../index.html" class="nav-back">← Inicio</a>
+  <span class="nav-title">El libro que susurra</span>
+  <span class="nav-pages" id="navPages">1 / 8</span>
+</nav>
+
+<div class="book-scene">
+  <div class="book-wrap">
+    <div class="book-open">
+      <div class="half-left"></div>
+      <div class="half-right"></div>
+      <div class="flipper">
+        <div class="fl-front"></div>
+        <div class="fl-back"></div>
+      </div>
+      <div class="spine"></div>
+    </div>
+  </div>
+
+  <div class="book-controls">
+    <button class="btn-flip prev" id="btnPrev" disabled>← Anterior</button>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <button class="btn-flip next" id="btnNext">Siguiente →</button>
+  </div>
+</div>
+
+<!-- Definición de páginas (ocultas) -->
+<div id="page-defs" style="display:none">
+
+  <!-- 0: PORTADA -->
+  <div class="pg pg-cover">
+    <div class="cov-sparkles">
+      <span class="cov-sp" style="top:12%;left:18%;--ds:2.1s;--dd:0s">✨</span>
+      <span class="cov-sp" style="top:22%;right:12%;--ds:1.8s;--dd:.3s">⭐</span>
+      <span class="cov-sp" style="bottom:20%;left:10%;--ds:2.4s;--dd:.6s">💫</span>
+      <span class="cov-sp" style="bottom:14%;right:18%;--ds:2s;--dd:.9s">✨</span>
+    </div>
+    <div class="cov-emoji">📖</div>
+    <h1 class="cov-title">El libro que susurra</h1>
+    <p class="cov-sub">Una historia de Tomás y el poder de las palabras</p>
+    <button class="cov-btn" onclick="window.__fb.next()">¡Comenzar! →</button>
+  </div>
+
+  <!-- 1 -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>Ese día, algo raro pasó en el aula.</p>
+      <p>No fue un ruido fuerte.<br>Ni un grito.<br>Ni un golpe.</p>
+      <p>Fue un susurro.</p>
+      <span class="story-quote">—Shhh… leeme…</span>
+      <p>Tomás levantó la cabeza.<br>Miró a sus compañeros.<br>Nadie parecía haber escuchado nada.</p>
+    </div>
+    <span class="pg-num left">1</span>
+  </div>
+
+  <!-- 1imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina1.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">2</span>
+  </div>
+
+   <!-- 2 -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>La seño dejó un libro sobre la mesa.<br>Un libro distinto.</p>
+      <p>Tenía la tapa brillante y un título que parecía moverse.</p>
+      <span class="story-quote">—Shhh… leeme… —volvió a escuchar.</span>
+      <p>Esta vez estaba seguro.<br>El libro le estaba hablando.</p>
+    </div>
+    <span class="pg-num left">3</span>
+  </div>
+
+   <!-- 2imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina2.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">4</span>
+  </div>
+
+  <!-- 3 -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>Sintió cosquillas en la panza.<br>Un poco de miedo… y muchas ganas.</p>
+      <span class="story-quote">—¿Quién quiere leer? —preguntó la seño.</span>
+      <p>Silencio.</p>
+      <p>Tomás dudó. Antes, su voz se escondía.<br>Las palabras se le escapaban.</p>
+      <p>Pero ese libro lo estaba esperando.</p>
+      <p>Levantó la mano.</p>
+    </div>
+    <span class="pg-num left">5</span>
+  </div>
+
+    <!-- 3imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina4.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">6</span>
+  </div>
+
+  <!-- 4 -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>Las letras no eran solo letras.<br>Se movían. Brillaban.</p>
+      <p>Y su voz… ya no era bajita.<br>Sonaba fuerte. Segura. ¡Valiente!</p>
+    </div>
+    <span class="pg-num left">7</span>
+  </div>
+
+  <!-- 4imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina5.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">8</span>
+  </div>
+
+  <!-- 5 -->
+  <div class="pg pg-content">
+    <div class="story-body">
+      <p>De pronto, el aula desapareció.</p>
+      <p>Había un bosque.<br>Un personaje.<br>Una aventura que lo llamaba.</p>
+      <p>Tomás siguió leyendo.<br>No quería parar.</p>
+    </div>
+    <span class="pg-num left">9</span>
+  </div>
+
+   <!-- 5imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina6.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">10</span>
+  </div>
+
+
+  <!-- 6 -->
+  <div class="pg pg-content">
+       <div class="story-body">
+      <p>Cuando terminó, el aula volvió a aparecer.</p>
+      <p>Sus compañeros lo miraban.<br>La seño sonreía. Y él también sonrió.</p>
+      <p>Ahora las palabras salen claras. Salen seguras.</p>
+      <br>
+      <p><strong>Y cada vez que abre un libro… una nueva aventura empieza.</strong></p>
+    </div>
+    <span class="pg-num left">11</span>
+  </div>
+
+   <!-- 6imagen -->
+  <div class="pg pg-content">
+    <img class="pg-img" src="imagenes/pagina7.png" onerror="this.style.display='none'" />
+    <span class="pg-num right">12</span>
+  </div>
+
+
+  <!-- 7: FIN *********************    -->
+  <!--<div class="pg pg-end">
+    
+ <div class="pg-audio">
+      <span class="pg-audio-icon">🎙️</span>
+      <audio controls preload="none" style="width:100%">
+        <source src="audio/narracion.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+
+    <div class="end-emoji">🎉</div>
+    <h2 class="end-title">¡Fin del cuento!</h2>
+    <p class="end-sub">¿Te gustó la historia de Tomás?<br>¡Hay más cuentos esperándote!</p>
+        <a href="../../index.html" class="end-link">📚 Ver más cuentos</a>
+          <div class="pg-video-wrap">
+      <video class="pg-video" controls preload="metadata" poster="imagenes/video-poster.jpg">
+        <source src="video/el_libro_que_susurra_-_pixar.mp4" type="video/mp4" />
+      </video>
+      <span class="pg-video-lbl">🎬 Mirá el cuento</span>
+    </div>
+  </div> -->
+
+  <div class="pg pg-content" style="justify-content: center; align-items: center; background: #fffef8;">
+    <div class="pg-video-wrap">
+      <video class="pg-video" controls preload="metadata">
+        <source src="video/el_libro_que_susurra_-_pixar.mp4" type="video/mp4" />
+      </video>
+      <span class="pg-video-lbl">🎬 Mirá el cuento</span>
+    </div>
+    <p style="font-family: 'Baloo 2'; font-weight: 700; margin-top: 10px; color: #4D96FF;">¡Dale play al video!</p>
+  </div>
+
+<div class="pg pg-end" style="background: linear-gradient(135deg,#6BCB77,#4D96FF);">
+    <div class="end-emoji">🎉</div>
+    <p class="end-sub">¿Te gustó la historia de Tomás?<br>¡Hay más cuentos esperándote!</p>
+    <a href="../../index.html" class="end-link">📚 Ver más cuentos</a>
+    
+    <div class="pg-audio" style="margin-top: 20px;">
+      <span class="pg-audio-icon">🎙️</span>
+      <audio controls preload="none" style="width:100%">
+        <source src="audio/narracion.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+</div>
+
+<!--<div class="pg pg-content">
+  <div class="story-body">
+    <p style="text-align:center; margin-top:50%;">¡Fin del cuento!</p>
+    <h2 class="end-title">¡Fin del cuento!</h2>
+  </div>
+</div>-->
+
+
+<div class="pg pg-end" style="background: linear-gradient(135deg,#6BCB77,#4D96FF);">
+    <div class="end-emoji">🎉</div>
+    <p class="end-sub">¿Te gustó la historia de Tomás?<br>¡Hay más cuentos esperándote!</p>
+    <a href="../../index.html" class="end-link">📚 Ver más cuentos</a>
+    
+    <div class="pg-audio" style="margin-top: 20px;">
+      <span class="pg-audio-icon">🎙️</span>
+      <audio controls preload="none" style="width:100%">
+        <source src="audio/narracion.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+</div>
+
+
+<script src="../../assets/js/flipbook.js"></script>
+<script>
+  const pages = Array.from(document.querySelectorAll('#page-defs > .pg'));
+  window.__fb = new Flipbook3D({ pages });
+</script>
+</body>
+</html>
