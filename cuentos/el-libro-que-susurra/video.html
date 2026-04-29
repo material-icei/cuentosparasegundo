@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Hora de la Función! - El libro que susurra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primario: #FF6B6B;
+            --color-secundario: #FFD93D;
+            --color-cine: #4D96FF;
+            --fondo: #0f0c29;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(ellipse at 60% 30%, #302b63 0%, #0f0c29 70%);
+            font-family: 'Nunito', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Fondo de estrellas animadas */
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2.8rem;
+            color: var(--color-secundario);
+            text-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-top: 5px;
+        }
+
+        /* Contenedor de Video Estilo Cine */
+        .video-cinema-box {
+            position: relative;
+            width: 90vw;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: 10px solid white;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(77, 150, 255, 0.4), 0 20px 50px rgba(0,0,0,0.6);
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Botón Volver */
+        .footer {
+            margin-top: 40px;
+            z-index: 2;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--color-primario);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-family: 'Baloo 2', cursive;
+            font-weight: 800;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back:hover {
+            transform: scale(1.1) rotate(-2deg);
+            background: #ff4f4f;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Luces de cine laterales (decoración) */
+        .cinema-light {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--color-secundario);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-secundario);
+            animation: lightPulse 1.5s infinite alternate;
+        }
+
+        @keyframes lightPulse {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg" id="stars"></div>
+
+    <header>
+        <h1>🎬 ¡Cine en el Aula!</h1>
+        <p>Prepara tus palomitas y disfruta la historia</p>
+    </header>
+
+    <div class="video-cinema-box">
+        <div class="cinema-light" style="top: -5px; left: -5px;"></div>
+        <div class="cinema-light" style="top: -5px; right: -5px;"></div>
+        <div class="cinema-light" style="bottom: -5px; left: -5px;"></div>
+        <div class="cinema-light" style="bottom: -5px; right: -5px;"></div>
+
+        <video controls poster="imagenes/video-poster.jpg">
+            <source src="video/el_libro_que_susurra_-_pixar.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
+
+    <div class="footer">
+        <a href="index.html" class="btn-back">
+            <span>🏠</span> Volver al Cuento
+        </a>
+    </div>
+
+    <script>
+        // Crear estrellas aleatorias
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
