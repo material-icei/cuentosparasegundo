@@ -30,7 +30,7 @@ antologia/
 │   │   └── flipbook.css        ← Estilos del lector flipbook
 │   └── js/
 │       ├── stars.js            ← Estrellas animadas de fondo
-│       └── flipbook.js         ← Motor de pasar páginas
+│       └── flipbook.js         ← Motor canvas con papel blando
 │
 └── cuentos/
     ├── _template/              ← 📋 COPIÁ ESTA CARPETA para cada cuento nuevo
@@ -38,10 +38,30 @@ antologia/
     │
     └── el-libro-que-susurra/   ← Ejemplo completo
         ├── index.html
-        ├── imagenes/           ← Imágenes del cuento (.jpg / .png / .webp)
+        ├── imagenes/
+        │   ├── pagina1.png     ← 🖼 Imagen de la página izquierda, spread 1
+        │   ├── pagina2.png     ← 🖼 Imagen de la página izquierda, spread 2
+        │   ├── pagina3.png     ← 🖼 ... y así sucesivamente
+        │   └── tomas-aula.png  ← Imágenes del contenido de páginas derechas
         ├── audio/              ← Narración (narracion.mp3)
         └── video/              ← Video corto (.mp4)
 ```
+
+## 🖼 Imágenes de páginas izquierdas (pagina1.png, pagina2.png…)
+
+Al abrir el libro, la **página izquierda** muestra siempre una ilustración a pantalla completa.
+Estas imágenes se llaman `pagina1.png`, `pagina2.png`, etc. y van en la carpeta `imagenes/` de cada cuento.
+
+| Archivo       | Cuándo aparece                              |
+|---------------|---------------------------------------------|
+| `pagina1.png` | Al abrir la primera página (spread 1)       |
+| `pagina2.png` | Al pasar a la segunda página (spread 2)     |
+| `pagina3.png` | Al pasar a la tercera página (spread 3)     |
+| …             | …                                           |
+
+**Recomendación de tamaño:** 800×600 px o mayor, relación de aspecto similar a la mitad del libro (aprox. 3:4).
+
+Si una imagen no existe, la página izquierda muestra un fondo crema como fallback.
 
 ---
 
