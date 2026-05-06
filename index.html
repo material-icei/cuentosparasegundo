@@ -11,10 +11,8 @@
 </head>
 <body class="home">
 
-  <!-- Estrellas de fondo animadas -->
   <div class="stars" id="stars"></div>
 
-  <!-- Encabezado principal -->
   <header class="hero">
     <div class="hero-badge">📚 2° Grado</div>
     <h1 class="hero-title">
@@ -26,71 +24,171 @@
     <div class="hero-deco">✨</div>
   </header>
 
-  <!-- Índice / Grilla de cuentos -->
   <main class="library">
     <div class="books-grid" id="booksGrid">
 
-      <!-- Cuento 1 — El libro que susurra -->
-     <article class="book-card" style="--card-color:#FF6B6B; --card-color2:#FFD93D;" onclick="window.location='cuentos/el-libro-que-susurra/index.html'">
-  <div class="card-cover">
-    <div class="card-emoji">📖</div>
-    <div class="card-glow"></div>
-  </div>
-  <div class="card-info">
-    <h2 class="card-title">El libro que susurra</h2>
-    <p class="card-desc">Tomás escucha algo increíble en el aula… ¡un libro que le habla!</p>
-    <div class="card-meta">
-      <a href="cuentos/el-libro-que-susurra/video.html" onclick="event.stopPropagation();" style="text-decoration: none;">
-        <span class="tag">🎬 Video</span>
-      </a>
-      
-      <a href="cuentos/el-libro-que-susurra/galeria.html" onclick="event.stopPropagation();" style="text-decoration: none;">
-        <span class="tag">🖼 Imágenes</span>
-      </a>
-      
-      <span class="tag">🎙 Audio</span>
-    </div>
-  </div>
-  <div class="card-btn">Leer ✨</div>
-</article>
-
-      <!-- Cuento 2 — Placeholder -->
-      <article class="book-card coming-soon" style="--card-color:#A78BFA; --card-color2:#60A5FA;">
+      <!-- 1 — El libro que susurra (local) -->
+      <article class="book-card"
+               style="--card-color:#FF6B6B; --card-color2:#FFD93D;"
+               onclick="window.location='cuentos/el-libro-que-susurra/index.html'">
         <div class="card-cover">
-          <div class="card-emoji">🌟</div>
+          <div class="card-emoji">📖</div>
           <div class="card-glow"></div>
         </div>
         <div class="card-info">
-          <h2 class="card-title">Próximamente…</h2>
-          <p class="card-desc">Otro cuento mágico está llegando.</p>
+          <h2 class="card-title">El libro que susurra</h2>
+          <p class="card-desc">Tomás escucha algo increíble en el aula… ¡un libro que le habla!</p>
+          <div class="card-meta">
+            <span class="tag">🎬 Video</span>
+            <span class="tag">🖼 Imágenes</span>
+            <span class="tag">🎙 Audio</span>
+          </div>
         </div>
-        <div class="card-btn disabled">Pronto 🔒</div>
+        <div class="card-btn">Leer ✨</div>
       </article>
 
-      <!-- Cuento 3 — Placeholder -->
-      <article class="book-card coming-soon" style="--card-color:#34D399; --card-color2:#6EE7B7;">
+      <!-- 2 — El mejor plan del mundo -->
+      <article class="book-card"
+               style="--card-color:#F97316; --card-color2:#FBBF24;"
+               onclick="window.open('https://gemini.google.com/share/f12d602c9ee5','_blank')">
         <div class="card-cover">
-          <div class="card-emoji">🦋</div>
+          <div class="card-emoji">🗺️</div>
           <div class="card-glow"></div>
         </div>
         <div class="card-info">
-          <h2 class="card-title">Próximamente…</h2>
-          <p class="card-desc">Otro cuento mágico está llegando.</p>
+          <h2 class="card-title">El mejor plan del mundo</h2>
+          <p class="card-desc">Un plan tan grande que nadie imaginaba cómo terminaría.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
         </div>
-        <div class="card-btn disabled">Pronto 🔒</div>
+        <div class="card-btn">Leer ✨</div>
       </article>
 
-      <!-- Cuento 4 — Placeholder -->
-      <article class="book-card coming-soon" style="--card-color:#F97316; --card-color2:#FBBF24;">
+      <!-- 3 — El globo en mi panza -->
+      <article class="book-card"
+               style="--card-color:#A78BFA; --card-color2:#60A5FA;"
+               onclick="window.open('https://gemini.google.com/share/c553938e557a','_blank')">
         <div class="card-cover">
-          <div class="card-emoji">🚀</div>
+          <div class="card-emoji">🎈</div>
           <div class="card-glow"></div>
         </div>
         <div class="card-info">
-          <h2 class="card-title">Próximamente…</h2>
-          <p class="card-desc">Otro cuento mágico está llegando.</p>
+          <h2 class="card-title">El globo en mi panza</h2>
+          <p class="card-desc">Cuando los nervios se sienten como un globo que crece por dentro.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
         </div>
-        <div class="card-btn disabled">Pronto 🔒</div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 4 — Una noche de campamento -->
+      <article class="book-card"
+               style="--card-color:#34D399; --card-color2:#059669;"
+               onclick="window.open('https://gemini.google.com/share/bc85be0f07bc','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">⛺</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Una noche de campamento</h2>
+          <p class="card-desc">Estrellas, fogón y una aventura que no olvidarán jamás.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 5 — La gran aventura de Manchitas y Simón -->
+      <article class="book-card"
+               style="--card-color:#EC4899; --card-color2:#F9A8D4;"
+               onclick="window.open('https://gemini.google.com/share/93d639931388','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">🐾</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">La gran aventura de Manchitas y Simón</h2>
+          <p class="card-desc">Dos amigos muy distintos descubren que juntos son invencibles.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 6 — Las montañas encantadas -->
+      <article class="book-card"
+               style="--card-color:#6366F1; --card-color2:#A5B4FC;"
+               onclick="window.open('https://gemini.google.com/share/71474c90c02d','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">🏔️</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Las montañas encantadas</h2>
+          <p class="card-desc">En esas montañas hay secretos que solo los valientes pueden encontrar.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 7 — Cuando se apaga la luz -->
+      <article class="book-card"
+               style="--card-color:#1E293B; --card-color2:#475569;"
+               onclick="window.open('https://gemini.google.com/share/800f82af6e34','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">🌙</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Cuando se apaga la luz</h2>
+          <p class="card-desc">La oscuridad esconde miedos… y también sorpresas inesperadas.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 8 — La tarde del partido -->
+      <article class="book-card"
+               style="--card-color:#16A34A; --card-color2:#86EFAC;"
+               onclick="window.open('https://gemini.google.com/share/08d8fa55615d','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">⚽</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">La tarde del partido</h2>
+          <p class="card-desc">El partido más importante de su vida… y lo que aprendió al final.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
+      </article>
+
+      <!-- 9 — Los cordones de Juan -->
+      <article class="book-card"
+               style="--card-color:#0EA5E9; --card-color2:#BAE6FD;"
+               onclick="window.open('https://gemini.google.com/share/3642ed95542e','_blank')">
+        <div class="card-cover">
+          <div class="card-emoji">👟</div>
+          <div class="card-glow"></div>
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Los cordones de Juan</h2>
+          <p class="card-desc">Juan no puede atarse los cordones… hasta que encuentra su propio camino.</p>
+          <div class="card-meta">
+            <span class="tag">🖼 Ilustrado</span>
+          </div>
+        </div>
+        <div class="card-btn">Leer ✨</div>
       </article>
 
     </div>
