@@ -25,171 +25,217 @@
   </header>
 
   <main class="library">
-    <div class="books-grid" id="booksGrid">
+    <div class="books-grid">
 
-      <!-- 1 — El libro que susurra (local) -->
-      <article class="book-card"
-               style="--card-color:#FF6B6B; --card-color2:#FFD93D;"
-               onclick="window.location='cuentos/el-libro-que-susurra/index.html'">
-        <div class="card-cover">
-          <div class="card-emoji">📖</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">El libro que susurra</h2>
-          <p class="card-desc">Tomás escucha algo increíble en el aula… ¡un libro que le habla!</p>
-          <div class="card-meta">
-            <span class="tag">🎬 Video</span>
-            <span class="tag">🖼 Imágenes</span>
-            <span class="tag">🎙 Audio</span>
+      <!-- 1 ─ El libro que susurra (local) -->
+      <div class="book-wrap" onclick="window.location='cuentos/el-libro-que-susurra/index.html'">
+        <div class="book-3d" style="--c1:#FF6B6B;--c2:#FFD93D;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">📖</span></div>
+            <div class="cover-body"><p class="cover-title">El libro que susurra</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 2 — El mejor plan del mundo -->
-      <article class="book-card"
-               style="--card-color:#F97316; --card-color2:#FBBF24;"
-               onclick="window.open('https://gemini.google.com/share/f12d602c9ee5','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">🗺️</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">El mejor plan del mundo</h2>
-          <p class="card-desc">Un plan tan grande que nadie imaginaba cómo terminaría.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 2 ─ El mejor plan del mundo -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/f12d602c9ee5','_blank')">
+        <div class="book-3d" style="--c1:#F97316;--c2:#FBBF24;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🗺️</span></div>
+            <div class="cover-body"><p class="cover-title">El mejor plan del mundo</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 3 — El globo en mi panza -->
-      <article class="book-card"
-               style="--card-color:#A78BFA; --card-color2:#60A5FA;"
-               onclick="window.open('https://gemini.google.com/share/c553938e557a','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">🎈</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">El globo en mi panza</h2>
-          <p class="card-desc">Cuando los nervios se sienten como un globo que crece por dentro.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 3 ─ El globo en mi panza -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/c553938e557a','_blank')">
+        <div class="book-3d" style="--c1:#A78BFA;--c2:#60A5FA;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🎈</span></div>
+            <div class="cover-body"><p class="cover-title">El globo en mi panza</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 4 — Una noche de campamento -->
-      <article class="book-card"
-               style="--card-color:#34D399; --card-color2:#059669;"
-               onclick="window.open('https://gemini.google.com/share/bc85be0f07bc','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">⛺</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">Una noche de campamento</h2>
-          <p class="card-desc">Estrellas, fogón y una aventura que no olvidarán jamás.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 4 ─ Una noche de campamento -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/bc85be0f07bc','_blank')">
+        <div class="book-3d" style="--c1:#34D399;--c2:#059669;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">⛺</span></div>
+            <div class="cover-body"><p class="cover-title">Una noche de campamento</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 5 — La gran aventura de Manchitas y Simón -->
-      <article class="book-card"
-               style="--card-color:#EC4899; --card-color2:#F9A8D4;"
-               onclick="window.open('https://gemini.google.com/share/93d639931388','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">🐾</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">La gran aventura de Manchitas y Simón</h2>
-          <p class="card-desc">Dos amigos muy distintos descubren que juntos son invencibles.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 5 ─ La gran aventura de Manchitas y Simón -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/93d639931388','_blank')">
+        <div class="book-3d" style="--c1:#EC4899;--c2:#F9A8D4;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🐾</span></div>
+            <div class="cover-body"><p class="cover-title">La gran aventura de Manchitas y Simón</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 6 — Las montañas encantadas -->
-      <article class="book-card"
-               style="--card-color:#6366F1; --card-color2:#A5B4FC;"
-               onclick="window.open('https://gemini.google.com/share/71474c90c02d','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">🏔️</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">Las montañas encantadas</h2>
-          <p class="card-desc">En esas montañas hay secretos que solo los valientes pueden encontrar.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 6 ─ Las montañas encantadas -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/71474c90c02d','_blank')">
+        <div class="book-3d" style="--c1:#6366F1;--c2:#A5B4FC;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🏔️</span></div>
+            <div class="cover-body"><p class="cover-title">Las montañas encantadas</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 7 — Cuando se apaga la luz -->
-      <article class="book-card"
-               style="--card-color:#1E293B; --card-color2:#475569;"
-               onclick="window.open('https://gemini.google.com/share/800f82af6e34','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">🌙</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">Cuando se apaga la luz</h2>
-          <p class="card-desc">La oscuridad esconde miedos… y también sorpresas inesperadas.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 7 ─ Cuando se apaga la luz -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/800f82af6e34','_blank')">
+        <div class="book-3d" style="--c1:#334155;--c2:#7C3AED;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🌙</span></div>
+            <div class="cover-body"><p class="cover-title">Cuando se apaga la luz</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 8 — La tarde del partido -->
-      <article class="book-card"
-               style="--card-color:#16A34A; --card-color2:#86EFAC;"
-               onclick="window.open('https://gemini.google.com/share/08d8fa55615d','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">⚽</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">La tarde del partido</h2>
-          <p class="card-desc">El partido más importante de su vida… y lo que aprendió al final.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 8 ─ La tarde del partido -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/08d8fa55615d','_blank')">
+        <div class="book-3d" style="--c1:#16A34A;--c2:#86EFAC;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">⚽</span></div>
+            <div class="cover-body"><p class="cover-title">La tarde del partido</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
-      <!-- 9 — Los cordones de Juan -->
-      <article class="book-card"
-               style="--card-color:#0EA5E9; --card-color2:#BAE6FD;"
-               onclick="window.open('https://gemini.google.com/share/3642ed95542e','_blank')">
-        <div class="card-cover">
-          <div class="card-emoji">👟</div>
-          <div class="card-glow"></div>
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">Los cordones de Juan</h2>
-          <p class="card-desc">Juan no puede atarse los cordones… hasta que encuentra su propio camino.</p>
-          <div class="card-meta">
-            <span class="tag">🖼 Ilustrado</span>
+      <!-- 9 ─ Los cordones de Juan -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/3642ed95542e','_blank')">
+        <div class="book-3d" style="--c1:#0EA5E9;--c2:#BAE6FD;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">👟</span></div>
+            <div class="cover-body"><p class="cover-title">Los cordones de Juan</p></div>
           </div>
+          <div class="book-back"></div>
         </div>
-        <div class="card-btn">Leer ✨</div>
-      </article>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 10 ─ El superpoder de todos los días -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/ab8fdd84778a','_blank')">
+        <div class="book-3d" style="--c1:#EF4444;--c2:#FCA5A5;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🦸</span></div>
+            <div class="cover-body"><p class="cover-title">El superpoder de todos los días</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 11 ─ La montaña de hojas -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/b527e38930d8','_blank')">
+        <div class="book-3d" style="--c1:#CA8A04;--c2:#FDE68A;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🍂</span></div>
+            <div class="cover-body"><p class="cover-title">La montaña de hojas</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 12 ─ Cocinar sin receta -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/25f3d71e71d5','_blank')">
+        <div class="book-3d" style="--c1:#DC2626;--c2:#FB923C;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🍳</span></div>
+            <div class="cover-body"><p class="cover-title">Cocinar sin receta</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 13 ─ Cuando empieza la aventura -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/ca44438649b7','_blank')">
+        <div class="book-3d" style="--c1:#0891B2;--c2:#67E8F9;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🚀</span></div>
+            <div class="cover-body"><p class="cover-title">Cuando empieza la aventura</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 14 ─ El lorito de las mañanas -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/6a007f03768b','_blank')">
+        <div class="book-3d" style="--c1:#16A34A;--c2:#FDE047;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🦜</span></div>
+            <div class="cover-body"><p class="cover-title">El lorito de las mañanas</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
+
+      <!-- 15 ─ Las pistas en la arena -->
+      <div class="book-wrap" onclick="window.open('https://gemini.google.com/share/c96f063ba145','_blank')">
+        <div class="book-3d" style="--c1:#D97706;--c2:#60A5FA;">
+          <div class="book-cover">
+            <div class="cover-lines"></div>
+            <div class="cover-top"><span class="cover-emoji">🔍</span></div>
+            <div class="cover-body"><p class="cover-title">Las pistas en la arena</p></div>
+          </div>
+          <div class="book-back"></div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-label">Leer ✨</div>
+      </div>
 
     </div>
   </main>
@@ -197,6 +243,10 @@
   <footer class="site-footer">
     <p>Hecho con 💛 para lectores valientes de 2° grado</p>
   </footer>
+
+  <script src="assets/js/stars.js"></script>
+</body>
+</html>
 
   <script src="assets/js/stars.js"></script>
 </body>
