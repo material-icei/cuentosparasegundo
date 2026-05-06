@@ -28,3 +28,4 @@
     container.appendChild(star);
   }
 })();
+
