@@ -336,11 +336,29 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 4px;
+  /* Elevar por encima de la transformación 3D */
+  position: relative;
+  z-index: 10;
 }
-.review-btns .review-cta { margin-top: 0; }
+.review-btns .review-cta {
+  margin-top: 0;
+  border: none;
+  cursor: pointer;
+  /* Asegurar que el botón sea siempre clicable */
+  pointer-events: auto !important;
+}
 
 .review-cta-activity {
   background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+}
+
+/* El panel del cuento 1 (con botones) tiene pointer-events siempre activos
+   cuando el libro está en hover — se maneja via JS */
+#review1 {
+  pointer-events: none; /* default: bloqueado */
+}
+#book1:hover #review1 {
+  pointer-events: auto;
 }
 
 /* ── Footer ────────────────────────────────────────────── */
@@ -370,4 +388,3 @@ body {
   .books-grid { grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 24px 16px; }
   .book-label { display: none; }
 }
-
