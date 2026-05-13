@@ -4,19 +4,6 @@ Libro digital interactivo con efecto flipbook para el aula.
 Diseñado con HTML, CSS y JavaScript puro. Listo para publicar en **GitHub Pages**.
 
 ---
-
-## 🚀 Publicar en GitHub Pages
-
-1. Subí todos los archivos a tu repositorio de GitHub
-2. Entrá a **Settings → Pages**
-3. En *Source*, seleccioná **Deploy from a branch**
-4. Elegí la rama `main` y carpeta `/ (root)`
-5. Cliqueá **Save**
-6. En unos minutos, tu antología estará en:  
-   `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/`
-
----
-
 ## 📁 Estructura del proyecto
 
 ```
@@ -33,17 +20,16 @@ antologia/
 │       └── flipbook.js         ← Motor canvas con papel blando
 │
 └── cuentos/
-    ├── _template/              ← 📋 COPIÁ ESTA CARPETA para cada cuento nuevo
+    ├── _template/              ← 📋 MODELO para cada cuento nuevo
     │   └── index.html
     │
-    └── el-libro-que-susurra/   ← Ejemplo completo
+    └── el-libro-que-susurra/   ←  completo
         ├── index.html
         ├── imagenes/
         │   ├── pagina1.png     ← 🖼 Imagen de la página izquierda, spread 1
         │   ├── pagina2.png     ← 🖼 Imagen de la página izquierda, spread 2
         │   ├── pagina3.png     ← 🖼 ... y así sucesivamente
-        │   └── tomas-aula.png  ← Imágenes del contenido de páginas derechas
-        ├── audio/              ← Narración (narracion.mp3)
+        │ 
         └── video/              ← Video corto (.mp4)
 ```
 
