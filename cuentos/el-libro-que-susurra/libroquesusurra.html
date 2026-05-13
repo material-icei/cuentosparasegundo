@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: El Libro que Susurra</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --success: #55efc4;
+            --bg: #f0f3f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); font-size: 1.8rem; }
+        
+        .quiz-container { margin-top: 20px; }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .question.active { display: block; }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            height: 24px;
+        }
+
+        #badge {
+            display: none;
+            margin-top: 20px;
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .badge-icon {
+            font-size: 80px;
+            background: gold;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📖 El Libro que Susurra</h1>
+    <div id="quiz">
+        <div class="question active" data-answer="Tomás">
+            <p>1. ¿Quién es el personaje principal del cuento?</p>
+            <div class="options">
+                <button onclick="checkAnswer(this, 'La seño')">La seño</button>
+                <button onclick="checkAnswer(this, 'Tomás')">Tomás</button>
+                <button onclick="checkAnswer(this, 'Un árbol')">Un árbol</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="En el aula">
+            <p>2. ¿Dónde comienza la historia?</p>
+            <div class="options">
+                <button onclick="checkAnswer(this, 'En el aula')">En el aula</button>
+                <button onclick="checkAnswer(this, 'En el patio')">En el patio</button>
+                <button onclick="checkAnswer(this, 'En su casa')">En su casa</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Le hablaba y susurraba">
+            <p>3. ¿Qué tenía de especial el libro nuevo?</p>
+            <div class="options">
+                <button onclick="checkAnswer(this, 'Era muy pesado')">Era muy pesado</button>
+                <button onclick="checkAnswer(this, 'No tenía dibujos')">No tenía dibujos</button>
+                <button onclick="checkAnswer(this, 'Le hablaba y susurraba')">Le hablaba y susurraba</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Segura y valiente">
+            <p>4. ¿Cómo era la voz de Tomás al final del cuento?</p>
+            <div class="options">
+                <button onclick="checkAnswer(this, 'Bajita')">Bajita</button>
+                <button onclick="checkAnswer(this, 'Segura y valiente')">Segura y valiente</button>
+                <button onclick="checkAnswer(this, 'Asustada')">Asustada</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="A un bosque">
+            <p>5. ¿A dónde viajó Tomás gracias a su imaginación?</p>
+            <div class="options">
+                <button onclick="checkAnswer(this, 'A la Luna')">A la Luna</button>
+                <button onclick="checkAnswer(this, 'Al fondo del mar')">Al fondo del mar</button>
+                <button onclick="checkAnswer(this, 'A un bosque')">A un bosque</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback"></div>
+
+    <div id="badge">
+        <div class="badge-icon">🏆</div>
+        <h2>¡Felicidades!</h2>
+        <p>Has ganado la insignia de: <br><strong>"Gran Lector Aventurero"</strong></p>
+        <button onclick="location.reload()">Jugar de nuevo</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const questions = document.querySelectorAll('.question');
+    const feedback = document.getElementById('feedback');
+    const badge = document.getElementById('badge');
+
+    function checkAnswer(button, selected) {
+        const activeQuestion = questions[currentStep];
+        const correctAnswer = activeQuestion.getAttribute('data-answer');
+
+        if (selected === correctAnswer) {
+            feedback.innerHTML = "¡Muy bien! ✨";
+            feedback.style.color = "green";
+            
+            setTimeout(() => {
+                feedback.innerHTML = "";
+                nextQuestion();
+            }, 1000);
+        } else {
+            feedback.innerHTML = "Inténtalo de nuevo... 🤔";
+            feedback.style.color = "red";
+        }
+    }
+
+    function nextQuestion() {
+        questions[currentStep].classList.remove('active');
+        currentStep++;
+
+        if (currentStep < questions.length) {
+            questions[currentStep].classList.add('active');
+        } else {
+            document.getElementById('quiz').style.display = 'none';
+            badge.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
