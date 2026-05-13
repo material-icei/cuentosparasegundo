@@ -291,6 +291,7 @@ body {
 
 .book-wrap:hover .book-review {
   clip-path: inset(0% 0 0 0);
+  pointer-events: auto;  /* habilita clicks en los botones al hacer hover */
 }
 
 .review-emoji {
@@ -324,6 +325,22 @@ body {
   padding: 5px 14px;
   border-radius: 50px;
   letter-spacing: .02em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ── Dos botones en panel de reseña ────────────────────── */
+.review-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.review-btns .review-cta { margin-top: 0; }
+
+.review-cta-activity {
+  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
 }
 
 /* ── Footer ────────────────────────────────────────────── */
@@ -353,3 +370,4 @@ body {
   .books-grid { grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 24px 16px; }
   .book-label { display: none; }
 }
+
