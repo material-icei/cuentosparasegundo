@@ -325,40 +325,45 @@ body {
   padding: 5px 14px;
   border-radius: 50px;
   letter-spacing: .02em;
+  text-decoration: none;
+  display: inline-block;
 }
 
-/* ── Botones debajo del libro (fuera del contexto 3D) ──── */
-.book-under-btns {
+/* ── Dos botones en panel de reseña ────────────────────── */
+.review-btns {
   display: flex;
   gap: 6px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 4px;
+}
+.review-btns .review-cta { margin-top: 0; }
+
+.review-cta-activity {
+  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
 }
 
+
+/* ── Botón Actividad debajo del libro ──────────────────── */
+.book-under-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 .book-under-btns button {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: .75rem;
   color: #fff;
+  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
   border: none;
   border-radius: 50px;
-  padding: 7px 14px;
+  padding: 7px 16px;
   cursor: pointer;
-  transition: transform .2s, opacity .2s;
+  transition: transform .2s;
 }
-
-.book-under-btns button:first-child {
-  background: linear-gradient(90deg, #FF6B6B, #FFD93D);
-}
-
-.book-under-btns button:last-child {
-  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-}
-
 .book-under-btns button:hover {
   transform: scale(1.07);
-  opacity: .92;
 }
 
 /* ── Footer ────────────────────────────────────────────── */
