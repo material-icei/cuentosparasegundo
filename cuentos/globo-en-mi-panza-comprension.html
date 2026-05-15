@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: El globo en mi panza</title>
+    <style>
+        :root {
+            --primary: #6c5ce7; /* Violeta relajante */
+            --secondary: #74b9ff; /* Azul cielo */
+            --success: #55efc4;
+            --bg: #f0f7ff; /* Fondo azul muy clarito */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { color: #636e72; font-style: italic; margin-bottom: 20px; }
+        
+        .quiz-container { margin-top: 20px; }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .question.active { display: block; }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button.option-btn {
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        button.option-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            height: 24px;
+        }
+
+        #badge {
+            display: none;
+            margin-top: 20px;
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .badge-icon {
+            font-size: 80px;
+            background: #a29bfe;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-reload {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎈 El globo en mi panza</h1>
+    <p class="subtitle">Aprendiendo a respirar y estar en calma</p>
+
+    <div id="quiz">
+        <div class="question active" data-answer="No lo dejaban pensar">
+            <p>1. ¿Qué pasaba con los ruidos del aula al principio?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Eran muy divertidos')">Eran muy divertidos</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'No lo dejaban pensar')">No lo dejaban pensar</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Hacían música')">Hacían música</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Un globo">
+            <p>2. ¿Con qué objeto comparó la seño a la panza?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Una pelota')">Una pelota</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Un globo')">Un globo</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Una almohada')">Una almohada</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Por la nariz">
+            <p>3. ¿Por dónde dice la seño que hay que tomar el aire?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Por la nariz')">Por la nariz</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Por las orejas')">Por las orejas</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Solo por la boca')">Solo por la boca</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Antenas">
+            <p>4. ¿Como qué estiró los brazos el protagonista?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Como alas')">Como alas</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Como antenas')">Como antenas</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Como fideos')">Como fideos</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Parar y respirar">
+            <p>5. ¿Qué necesita el niño para sentirse mejor?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Irse a otro lugar')">Irse a otro lugar</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Comprar un juguete')">Comprar un juguete</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Parar y respirar')">Parar y respirar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback"></div>
+
+    <div id="badge">
+        <div class="badge-icon">🧘</div>
+        <h2>¡Lo lograste!</h2>
+        <p>Has ganado la insignia de: <br><strong>"Maestro de la Calma"</strong></p>
+        <button class="btn-reload" onclick="location.reload()">Jugar de nuevo</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const questions = document.querySelectorAll('.question');
+    const feedback = document.getElementById('feedback');
+    const badge = document.getElementById('badge');
+
+    function checkAnswer(button, selected) {
+        const activeQuestion = questions[currentStep];
+        const correctAnswer = activeQuestion.getAttribute('data-answer');
+
+        if (selected === correctAnswer) {
+            feedback.innerHTML = "¡Excelente! Estás en calma... ✨";
+            feedback.style.color = "#2ecc71";
+            
+            setTimeout(() => {
+                feedback.innerHTML = "";
+                nextQuestion();
+            }, 1200);
+        } else {
+            feedback.innerHTML = "Intenta respirar y elegir otra vez... 🤔";
+            feedback.style.color = "#e67e22";
+        }
+    }
+
+    function nextQuestion() {
+        questions[currentStep].classList.remove('active');
+        currentStep++;
+
+        if (currentStep < questions.length) {
+            questions[currentStep].classList.add('active');
+        } else {
+            document.getElementById('quiz').style.display = 'none';
+            document.querySelector('.subtitle').style.display = 'none';
+            badge.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
