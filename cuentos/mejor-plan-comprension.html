@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: El mejor plan del mundo</title>
+    <style>
+        :root {
+            --primary: #00b894; /* Color verde inspirado en exploradores */
+            --secondary: #00cec9;
+            --success: #55efc4;
+            --bg: #fdf2e9; /* Fondo crema suave */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { color: #636e72; font-style: italic; margin-bottom: 20px; }
+        
+        .quiz-container { margin-top: 20px; }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .question.active { display: block; }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button.option-btn {
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        button.option-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            height: 24px;
+        }
+
+        #badge {
+            display: none;
+            margin-top: 20px;
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .badge-icon {
+            font-size: 80px;
+            background: #fab1a0;
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-reload {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎒 El mejor plan del mundo</h1>
+    <p class="subtitle">Actividad de comprensión lectora</p>
+
+    <div id="quiz">
+        <div class="question active" data-answer="Zuno">
+            <p>1. ¿Cómo se llama el amigo que siempre inventa juegos?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Zuno')">Zuno</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Tomás')">Tomás</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'El profesor')">El profesor</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="En el patio">
+            <p>2. ¿Dónde sucede la primera parte de la historia?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'En la calle')">En la calle</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'En el patio')">En el patio</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'En el cine')">En el cine</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Carrera de exploradores">
+            <p>3. ¿A qué jugaron primero cuando se encontraron?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'A la pelota')">A la pelota</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'A las cartas')">A las cartas</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Carrera de exploradores')">Carrera de exploradores</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Una risa">
+            <p>4. ¿Qué fue lo que el niño escuchó y nadie más notó?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Una pelea')">Una pelea</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Una risa')">Una risa</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Un timbre')">Un timbre</button>
+            </div>
+        </div>
+
+        <div class="question" data-answer="Jugar con sus amigos">
+        <p>5. ¿Qué es lo que más le gusta al protagonista?</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, 'Comer dulces')">Comer dulces</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Jugar con sus amigos')">Jugar con sus amigos</button>
+                <button class="option-btn" onclick="checkAnswer(this, 'Dormir mucho')">Dormir mucho</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback"></div>
+
+    <div id="badge">
+        <div class="badge-icon">🌟</div>
+        <h2>¡Excelente trabajo!</h2>
+        <p>Has ganado la insignia de: <br><strong>"Súper Explorador de Historias"</strong></p>
+        <button class="btn-reload" onclick="location.reload()">Jugar de nuevo</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const questions = document.querySelectorAll('.question');
+    const feedback = document.getElementById('feedback');
+    const badge = document.getElementById('badge');
+
+    function checkAnswer(button, selected) {
+        const activeQuestion = questions[currentStep];
+        const correctAnswer = activeQuestion.getAttribute('data-answer');
+
+        if (selected === correctAnswer) {
+            feedback.innerHTML = "¡Respuesta correcta! ✨";
+            feedback.style.color = "#2ecc71";
+            
+            // Esperar un segundo y pasar a la siguiente pregunta
+            setTimeout(() => {
+                feedback.innerHTML = "";
+                nextQuestion();
+            }, 1000);
+        } else {
+            feedback.innerHTML = "¡Casi! Inténtalo otra vez... 🧐";
+            feedback.style.color = "#e67e22";
+        }
+    }
+
+    function nextQuestion() {
+        questions[currentStep].classList.remove('active');
+        currentStep++;
+
+        if (currentStep < questions.length) {
+            questions[currentStep].classList.add('active');
+        } else {
+            document.getElementById('quiz').style.display = 'none';
+            document.querySelector('.subtitle').style.display = 'none';
+            badge.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
