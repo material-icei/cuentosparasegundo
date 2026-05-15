@@ -28,7 +28,7 @@
     <div class="books-grid">
 
       <!-- 1 ─ El libro que susurra -->
-      <div class="book-wrap" id="book1">
+      <div class="book-wrap" onclick="window.location='cuentos/el-libro-que-susurra/index.html'" style="cursor:pointer;">
         <div class="book-3d" style="--c1:#FF6B6B;--c2:#FFD93D;">
           <div class="book-cover">
             <div class="cover-lines"></div>
@@ -43,10 +43,8 @@
           <div class="book-back"></div>
         </div>
         <div class="book-shadow"></div>
-        <!-- Botones debajo del libro, completamente fuera del contexto 3D -->
         <div class="book-under-btns">
-          <button onclick="window.location='cuentos/el-libro-que-susurra/index.html'">Leer ✨</button>
-          <button onclick="window.location='cuentos/el-libro-que-susurra/libroquesusurra.html'">📓 Actividad</button>
+          <button onclick="event.stopPropagation(); window.location='cuentos/el-libro-que-susurra/libroquesusurra.html'">📓 Actividad</button>
         </div>
       </div>
 
@@ -326,3 +324,4 @@
   <script src="assets/js/stars.js"></script>
 </body>
 </html>
+
