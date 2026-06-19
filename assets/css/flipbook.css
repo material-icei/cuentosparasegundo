@@ -1,6 +1,5 @@
 /* =========================================================
-   FLIPBOOK CANVAS — Layout y estilos de soporte
-   El efecto de página lo maneja canvas/JS, no CSS 3D
+   SLIDESHOW 16:9 — Texto izquierda | Imagen derecha
    ========================================================= */
 
 :root {
@@ -8,6 +7,7 @@
   --cover-color2: #FFD93D;
   --font-display: 'Baloo 2', cursive;
   --font-story:   'Nunito', sans-serif;
+  --page-bg:      #fffef8;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,88 +23,292 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Estrellas de fondo ───────────────────────────────── */
+/* ── Estrellas ────────────────────────────────────────── */
 .stars-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .star {
   position: absolute; border-radius: 50%; background: #fff;
-  animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
-  animation-delay: var(--d, 0s);
+  animation: twinkle var(--dur,3s) ease-in-out infinite alternate;
+  animation-delay: var(--d,0s);
 }
 @keyframes twinkle {
-  from { opacity: .05; transform: scale(1); }
-  to   { opacity: .8;  transform: scale(1.5); }
+  from { opacity:.05; transform:scale(1); }
+  to   { opacity:.8;  transform:scale(1.5); }
 }
 
 /* ── Barra superior ───────────────────────────────────── */
 .story-nav {
   position: relative; z-index: 10; width: 100%;
   display: flex; align-items: center; gap: 16px;
-  padding: 12px 24px;
-  background: rgba(0,0,0,0.3);
+  padding: 11px 24px;
+  background: rgba(0,0,0,0.35);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .nav-back {
   display: flex; align-items: center; gap: 6px;
   color: #fff; text-decoration: none;
-  font-family: var(--font-display); font-weight: 700; font-size: .92rem;
+  font-family: var(--font-display); font-weight: 700; font-size: .9rem;
   padding: 6px 14px; border-radius: 50px;
   background: rgba(255,255,255,0.1);
   transition: background .2s; white-space: nowrap;
 }
-.nav-back:hover { background: rgba(255,255,255,0.18); }
+.nav-back:hover { background: rgba(255,255,255,0.2); }
 .nav-title {
   flex: 1; text-align: center;
-  font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+  font-family: var(--font-display); font-weight: 800; font-size: 1rem;
   color: #FFD93D; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .nav-pages {
-  font-family: var(--font-display); font-weight: 700; font-size: .82rem;
+  font-family: var(--font-display); font-weight: 700; font-size: .8rem;
   color: rgba(255,255,255,0.45); white-space: nowrap; min-width: 60px; text-align: right;
 }
 
-/* ── Escena del libro ─────────────────────────────────── */
+/* ── Escena ───────────────────────────────────────────── */
 .book-scene {
   position: relative; z-index: 1;
   flex: 1; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  padding: 28px 16px 20px; width: 100%;
+  padding: 20px 16px 14px; width: 100%;
 }
 
 .book-wrap {
-  width: min(900px, 95vw);
-}
-
-/* El canvas se ajusta solo via ResizeObserver */
-.book-open {
   width: 100%;
-  aspect-ratio: 2 / 1.35;
-  max-height: 68vh;
-  cursor: pointer;
+  max-width: min(960px, 95vw);
 }
 
-/* ── Controles inferiores ──────────────────────────────── */
+/* ── Slide container 16:9 ─────────────────────────────── */
+#slide-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(0,0,0,0.6);
+  transition: opacity .2s ease;
+  display: flex;
+}
+
+/* ══════════════════════════════════════════════════════
+   PÁGINAS BASE — ocultas en DOM, clonadas por el motor
+══════════════════════════════════════════════════════ */
+.pg {
+  display: none;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* ── PORTADA (ocupa todo el ancho) ───────────────────── */
+.pg-cover {
+  background: linear-gradient(135deg, var(--cover-color), var(--cover-color2));
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 48px;
+  gap: 12px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.cov-sparkles { position: absolute; inset: 0; pointer-events: none; }
+.cov-sp {
+  position: absolute; font-size: 1.6rem;
+  animation: spSpin var(--ds,2s) ease-in-out infinite alternate;
+  animation-delay: var(--dd,0s);
+}
+@keyframes spSpin {
+  from { transform: scale(.8) rotate(0deg); opacity:.6; }
+  to   { transform: scale(1.2) rotate(25deg); opacity:1; }
+}
+.cov-emoji {
+  font-size: clamp(3rem, 9vw, 6rem);
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+  animation: floatY 3s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-14px) rotate(3deg); }
+}
+.cov-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  font-weight: 800;
+  text-shadow: 0 3px 14px rgba(0,0,0,.2);
+  line-height: 1.15;
+}
+.cov-sub {
+  font-size: clamp(.85rem, 2vw, 1.1rem);
+  opacity: .88; font-weight: 700;
+}
+.cov-btn {
+  margin-top: 10px;
+  background: #fff; color: var(--cover-color);
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(.88rem, 2vw, 1.05rem);
+  padding: 12px 34px; border-radius: 50px; border: none; cursor: pointer;
+  box-shadow: 0 6px 22px rgba(0,0,0,.18);
+  transition: transform .2s cubic-bezier(.36,1.56,.64,1);
+}
+.cov-btn:hover { transform: scale(1.06); }
+
+/* ── SPREAD: dos columnas 50/50 ───────────────────────── */
+.pg-spread {
+  display: none;          /* se activa con flex al clonar */
+  width: 100%;
+  height: 100%;
+}
+
+/* Columna izquierda — texto */
+.spread-text {
+  width: 50%;
+  height: 100%;
+  background: var(--page-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(20px,4%,44px) clamp(20px,5%,52px);
+  gap: 14px;
+  position: relative;
+  /* Sombra sutil hacia el centro */
+  box-shadow: inset -8px 0 24px rgba(0,0,0,0.06);
+}
+
+/* Columna derecha — imagen */
+.spread-img {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #e8e4dc;
+}
+.spread-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Fallback si no hay imagen */
+.spread-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; opacity: .15;
+}
+
+/* ── Elementos de texto ───────────────────────────────── */
+.pg-chapter {
+  font-family: var(--font-display);
+  font-size: clamp(.65rem, 1.3vw, .82rem);
+  font-weight: 800; letter-spacing: .1em;
+  color: var(--cover-color); text-transform: uppercase;
+}
+
+.story-body {
+  font-size: clamp(1rem, 2.2vw, 1.32rem);
+  line-height: 1.85;
+  color: #2d2d4e;
+  font-weight: 600;
+  flex: 1;
+}
+.story-body p + p { margin-top: .65em; }
+
+.story-quote {
+  display: block;
+  border-left: 4px solid var(--cover-color);
+  padding: 7px 14px;
+  margin: 8px 0;
+  font-style: italic; font-weight: 700;
+  font-size: clamp(.95rem, 2vw, 1.2rem);
+  color: #1a1a2e;
+  background: rgba(255,107,107,0.07);
+  border-radius: 0 10px 10px 0;
+}
+
+.pg-num {
+  font-family: var(--font-display); font-size: .72rem;
+  font-weight: 700; color: rgba(0,0,0,.18);
+  position: absolute; bottom: 12px; right: 18px;
+}
+
+/* ── PÁGINA FINAL ─────────────────────────────────────── */
+.pg-end {
+  background: linear-gradient(135deg, #6BCB77, #4D96FF);
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; color: #fff;
+  padding: 40px 48px; gap: 14px;
+  position: relative;
+}
+.end-emoji { font-size: clamp(2.5rem,7vw,4.5rem); animation: floatY 3s ease-in-out infinite; }
+.end-title { font-family: var(--font-display); font-size: clamp(1.4rem,3.5vw,2rem); font-weight: 800; }
+.end-sub   { font-size: clamp(.82rem,1.8vw,.98rem); opacity: .92; font-weight: 700; }
+.end-link  {
+  display: inline-block; background: #fff; color: #6BCB77;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(.85rem,1.8vw,.98rem);
+  padding: 10px 28px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  transition: transform .2s cubic-bezier(.36,1.56,.64,1);
+}
+.end-link:hover { transform: scale(1.06); }
+
+/* Audio en página final */
+.pg-audio {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.15);
+  border: 1.5px solid rgba(255,255,255,.3);
+  border-radius: 40px; padding: 9px 16px;
+  width: 100%; max-width: 380px;
+}
+.pg-audio-icon { font-size: 1.2rem; animation: pulseA 1.5s ease-in-out infinite; }
+@keyframes pulseA { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+.pg-audio audio { flex: 1; height: 30px; }
+
+/* ── PÁGINA DE VIDEO ──────────────────────────────────── */
+.pg-video-full {
+  background: #0d0d1a;
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px; padding: 24px 32px;
+}
+.pg-video-wrap {
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+  position: relative; background: #000;
+  width: 100%; max-width: 640px;
+}
+.pg-video { width: 100%; display: block; }
+.pg-video-lbl {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.6); color: #FFD93D;
+  font-family: var(--font-display); font-weight: 700; font-size: .72rem;
+  padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(4px);
+}
+.pg-video-caption {
+  font-family: var(--font-display); font-weight: 700;
+  color: #4D96FF; font-size: clamp(.9rem,1.8vw,1.05rem);
+}
+
+/* ── Controles ────────────────────────────────────────── */
 .book-controls {
   position: relative; z-index: 2;
   display: flex; align-items: center; gap: 12px;
-  width: min(900px, 95vw);
-  padding: 14px 4px 24px;
+  width: 100%; max-width: min(960px, 95vw);
+  padding: 14px 4px 22px;
 }
 
 .btn-flip {
   display: flex; align-items: center; gap: 6px;
   font-family: var(--font-display); font-weight: 800; font-size: .9rem;
-  padding: 10px 20px; border-radius: 50px;
+  padding: 10px 22px; border-radius: 50px;
   border: 2px solid rgba(255,255,255,.2);
   background: rgba(255,255,255,.08);
   color: #fff; cursor: pointer;
-  transition: all .2s cubic-bezier(.36,1.56,.64,1);
-  white-space: nowrap;
+  transition: all .18s ease; white-space: nowrap;
 }
-.btn-flip:hover:not(:disabled) { background: rgba(255,255,255,.16); transform: scale(1.04); }
+.btn-flip:hover:not(:disabled) { background: rgba(255,255,255,.18); transform: scale(1.04); }
 .btn-flip:disabled { opacity: .28; cursor: default; transform: none; }
 .btn-flip.next {
-  background: linear-gradient(90deg, var(--cover-color, #FF6B6B), var(--cover-color2, #FFD93D));
+  background: linear-gradient(90deg, var(--cover-color,#FF6B6B), var(--cover-color2,#FFD93D));
   border-color: transparent;
   box-shadow: 0 4px 18px rgba(255,107,107,.4);
   margin-left: auto;
@@ -118,19 +322,19 @@ body {
 }
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--cover-color, #FF6B6B), var(--cover-color2, #FFD93D));
-  border-radius: 10px; transition: width .4s ease;
+  background: linear-gradient(90deg, var(--cover-color,#FF6B6B), var(--cover-color2,#FFD93D));
+  border-radius: 10px; transition: width .3s ease;
 }
 
-/* ── Páginas ocultas (fuente de datos para el canvas) ─── */
-/* El motor lee los nodos .pg del DOM y los renderiza en canvas */
-/* Los .pg no se muestran directamente en pantalla             */
-.pg { display: none; }
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .story-nav  { padding: 9px 12px; }
+  .book-scene { padding: 12px 8px 10px; }
+  .book-controls { padding: 10px 4px 14px; }
+  .btn-flip   { padding: 8px 12px; font-size: .82rem; }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .story-nav   { padding: 10px 14px; }
-  .book-scene  { padding: 12px 8px 12px; }
-  .book-controls { padding: 10px 4px 16px; }
-  .btn-flip    { padding: 8px 13px; font-size: .82rem; }
+  /* En móvil: columnas apiladas verticalmente */
+  .pg-spread  { flex-direction: column; }
+  .spread-text, .spread-img { width: 100%; height: 50%; }
+  .story-body { font-size: .95rem; }
 }
