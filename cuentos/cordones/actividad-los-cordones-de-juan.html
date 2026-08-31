@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Actividad: Los cordones de Juan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="actividad-cordones.css">
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- ── Barra superior fija: progreso + estrellas ─────────── -->
+<header class="topbar">
+  <a href="../../index.html" class="back-btn" title="Volver al índice">← Índice</a>
+
+  <div class="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-label" id="progressLabel">Pregunta 1 de 10</span>
+  </div>
+
+  <div class="stars-counter">
+    <span class="star-icon">⭐</span>
+    <span id="starCount">0</span>
+  </div>
+</header>
+
+<!-- ── Encabezado del cuento ──────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">👟 Comprensión lectora</div>
+  <h1 class="hero-title">Los cordones de <span class="hl">Juan</span></h1>
+  <p class="hero-sub">¡Demostrá cuánto recordás de cómo Juan aprendió a atarse los cordones!</p>
+</section>
+
+<!-- ── Contenedor donde se renderizan las preguntas ──────── -->
+<main id="app" class="app"></main>
+
+<!-- ── Pantalla final de resultados (oculta al inicio) ───── -->
+<section id="finalScreen" class="final-screen hidden">
+  <div class="final-card">
+    <div class="final-emoji" id="finalEmoji">🏆</div>
+    <h2 class="final-title" id="finalTitle">¡Excelente trabajo!</h2>
+    <p class="final-msg" id="finalMsg">Recolectaste todas las estrellas.</p>
+
+    <div class="final-stars" id="finalStars"></div>
+
+    <div class="badges-row" id="badgesRow"></div>
+
+    <div class="final-btns">
+      <button class="btn-main" id="retryBtn">🔁 Jugar de nuevo</button>
+      <a class="btn-secondary" href="../../index.html">📚 Volver al índice</a>
+    </div>
+  </div>
+</section>
+
+<div id="confettiLayer" class="confetti-layer"></div>
+
+<script src="actividad-cordones.js"></script>
+</body>
+</html>
